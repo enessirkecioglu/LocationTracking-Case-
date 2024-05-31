@@ -15,6 +15,7 @@
 		893FDADD2C0A166500CE71C5 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893FDADC2C0A166500CE71C5 /* SplashViewController.swift */; };
 		893FDAE12C0A16C700CE71C5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893FDADF2C0A16C700CE71C5 /* HomeViewController.swift */; };
 		893FDAE22C0A16C700CE71C5 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 893FDAE02C0A16C700CE71C5 /* HomeViewController.xib */; };
+		893FDAE52C0A1C7500CE71C5 /* UIApplication+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893FDAE42C0A1C7500CE71C5 /* UIApplication+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		893FDADC2C0A166500CE71C5 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		893FDADF2C0A16C700CE71C5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		893FDAE02C0A16C700CE71C5 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		893FDAE42C0A1C7500CE71C5 /* UIApplication+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 		893FDAC12C0A153900CE71C5 /* LocationTracking */ = {
 			isa = PBXGroup;
 			children = (
+				893FDAE32C0A1C6200CE71C5 /* Extensions */,
 				893FDAD62C0A15B800CE71C5 /* Application */,
 				893FDAD82C0A15E500CE71C5 /* Resources */,
 				893FDADA2C0A161F00CE71C5 /* Screens */,
@@ -127,6 +130,14 @@
 				893FDAE02C0A16C700CE71C5 /* HomeViewController.xib */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		893FDAE32C0A1C6200CE71C5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				893FDAE42C0A1C7500CE71C5 /* UIApplication+Ext.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +214,7 @@
 			files = (
 				893FDADD2C0A166500CE71C5 /* SplashViewController.swift in Sources */,
 				893FDAC32C0A153900CE71C5 /* AppDelegate.swift in Sources */,
+				893FDAE52C0A1C7500CE71C5 /* UIApplication+Ext.swift in Sources */,
 				893FDAC52C0A153900CE71C5 /* SceneDelegate.swift in Sources */,
 				893FDAE12C0A16C700CE71C5 /* HomeViewController.swift in Sources */,
 			);
@@ -362,8 +374,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -390,8 +401,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
