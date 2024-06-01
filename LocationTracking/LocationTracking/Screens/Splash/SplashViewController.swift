@@ -18,7 +18,7 @@ final class SplashViewController: UIViewController {
         
         let window = UIApplication.shared.sceneDelegate?.window ?? UIWindow()
         UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve) {
-            UIApplication.shared.rootViewController = HomeViewController()
+            UIApplication.shared.rootViewController = HomeViewController.generateModule()
         }
     }
 }

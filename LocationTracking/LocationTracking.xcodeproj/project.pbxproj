@@ -16,6 +16,7 @@
 		893FDAE12C0A16C700CE71C5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893FDADF2C0A16C700CE71C5 /* HomeViewController.swift */; };
 		893FDAE22C0A16C700CE71C5 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 893FDAE02C0A16C700CE71C5 /* HomeViewController.xib */; };
 		893FDAE52C0A1C7500CE71C5 /* UIApplication+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893FDAE42C0A1C7500CE71C5 /* UIApplication+Ext.swift */; };
+		893FDAE72C0A300D00CE71C5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893FDAE62C0A300D00CE71C5 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		893FDADF2C0A16C700CE71C5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		893FDAE02C0A16C700CE71C5 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		893FDAE42C0A1C7500CE71C5 /* UIApplication+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Ext.swift"; sourceTree = "<group>"; };
+		893FDAE62C0A300D00CE71C5 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				893FDADF2C0A16C700CE71C5 /* HomeViewController.swift */,
+				893FDAE62C0A300D00CE71C5 /* HomeViewModel.swift */,
 				893FDAE02C0A16C700CE71C5 /* HomeViewController.xib */,
 			);
 			path = Home;
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				893FDADD2C0A166500CE71C5 /* SplashViewController.swift in Sources */,
+				893FDAE72C0A300D00CE71C5 /* HomeViewModel.swift in Sources */,
 				893FDAC32C0A153900CE71C5 /* AppDelegate.swift in Sources */,
 				893FDAE52C0A1C7500CE71C5 /* UIApplication+Ext.swift in Sources */,
 				893FDAC52C0A153900CE71C5 /* SceneDelegate.swift in Sources */,
