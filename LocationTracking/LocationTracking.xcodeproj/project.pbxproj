@@ -131,9 +131,8 @@
 		893FDADE2C0A16B300CE71C5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				893FDADF2C0A16C700CE71C5 /* HomeViewController.swift */,
-				893FDAE62C0A300D00CE71C5 /* HomeViewModel.swift */,
-				893FDAE02C0A16C700CE71C5 /* HomeViewController.xib */,
+				893FDAEC2C0B760200CE71C5 /* ViewController */,
+				893FDAED2C0B760A00CE71C5 /* ViewModel */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -152,6 +151,23 @@
 				893FDAE92C0B4E6E00CE71C5 /* CustomCalloutView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		893FDAEC2C0B760200CE71C5 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				893FDADF2C0A16C700CE71C5 /* HomeViewController.swift */,
+				893FDAE02C0A16C700CE71C5 /* HomeViewController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		893FDAED2C0B760A00CE71C5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				893FDAE62C0A300D00CE71C5 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="Map view configurations" minToolsVersion="14.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="LocationTracking" customModuleProvider="target">
+            <connections>
+                <outlet property="mapView" destination="4Kx-Qg-gwT" id="F6m-xE-7gn"/>
+                <outlet property="trackingButton" destination="x2n-TZ-hl0" id="Jvo-s2-fCZ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Kx-Qg-gwT">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <standardMapConfiguration key="preferredConfiguration"/>
+                </mapView>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5VC-4n-yeA">
+                    <rect key="frame" x="0.0" y="692" width="393" height="160"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="oaQ-B0-4wW">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="160"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Rxy-P4-5xz">
+                                <rect key="frame" x="16" y="16" width="361" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x2n-TZ-hl0">
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="oQh-qN-coG"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" image="pause.fill" catalog="system" title="Durdur" imagePadding="8">
+                                            <color key="baseBackgroundColor" systemColor="systemPinkColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="didTapTrackingButton:" destination="-1" eventType="touchUpInside" id="XLj-cp-S7f"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Rxy-P4-5xz" secondAttribute="trailing" constant="16" id="9sy-X7-rX8"/>
+                            <constraint firstItem="Rxy-P4-5xz" firstAttribute="top" secondItem="oaQ-B0-4wW" secondAttribute="top" constant="16" id="REl-gS-Eqd"/>
+                            <constraint firstItem="Rxy-P4-5xz" firstAttribute="leading" secondItem="oaQ-B0-4wW" secondAttribute="leading" constant="16" id="q28-BQ-74l"/>
+                        </constraints>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="160" id="DDl-lV-ew7"/>
+                    </constraints>
+                    <blurEffect style="regular"/>
+                </visualEffectView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="4Kx-Qg-gwT" secondAttribute="bottom" id="3Da-hB-dPq"/>
+                <constraint firstAttribute="bottom" secondItem="5VC-4n-yeA" secondAttribute="bottom" id="ODv-Qq-6oD"/>
+                <constraint firstItem="4Kx-Qg-gwT" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="QWj-N7-yJq"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5VC-4n-yeA" secondAttribute="trailing" id="dR5-9L-qDS"/>
+                <constraint firstItem="4Kx-Qg-gwT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="gD6-kE-7zI"/>
+                <constraint firstItem="5VC-4n-yeA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="x7O-rZ-MAJ"/>
+                <constraint firstItem="4Kx-Qg-gwT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="zUh-Sk-u6Z"/>
+            </constraints>
+            <point key="canvasLocation" x="101.5267175572519" y="19.718309859154932"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="pause.fill" catalog="system" width="117" height="128"/>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -12,6 +12,8 @@ import MapKit
 protocol HomeViewOutput {
     func didViewLoad()
     func didSelect(_ mapView: MKMapView, didSelect view: MKAnnotationView)
+    func didTapStartTrackingButton()
+    func didTapStopTrackingButton()
 }
 
 protocol HomeViewInput: AnyObject {
@@ -22,7 +24,7 @@ protocol HomeViewInput: AnyObject {
 
 //MARK: - View Model
 final class HomeViewModel: NSObject, HomeViewOutput {
-    private var locationManager: CLLocationManager!
+    private var locationManager: CLLocationManager?
     private var lastLocation: CLLocation?
     private var totalDistance: CLLocationDistance = 0.0
     
@@ -30,12 +32,11 @@ final class HomeViewModel: NSObject, HomeViewOutput {
     
     func didViewLoad() {
         locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        locationManager.allowsBackgroundLocationUpdates = true
-        locationManager.pausesLocationUpdatesAutomatically = false
+        locationManager?.delegate = self
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.allowsBackgroundLocationUpdates = true
+        locationManager?.pausesLocationUpdatesAutomatically = false
     }
     
     func didSelect(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
@@ -61,6 +62,17 @@ final class HomeViewModel: NSObject, HomeViewOutput {
             self?.delegate?.addCalloutView(address, annotationView: view)
         }
     }
+    
+    func didTapStartTrackingButton() {
+        guard let locationManager else { return }
+        locationManager.startUpdatingLocation()
+    }
+    
+    func didTapStopTrackingButton() {
+        guard let locationManager else { return }
+        locationManager.stopUpdatingLocation()
+        lastLocation = nil
+    }
 }
 
 //MARK: - Location Delegate
@@ -78,9 +90,10 @@ extension HomeViewModel: CLLocationManagerDelegate {
             }
         } else {
             delegate?.addMarker(at: newLocation, title: "Başlangıç Noktası")
+            totalDistance = 0.0
         }
         
         self.lastLocation = newLocation
-        delegate?.setRegion(at: newLocation, latMeters: 200, longMeters: 200)
+        delegate?.setRegion(at: newLocation, latMeters: 400, longMeters: 400)
     }
 }
