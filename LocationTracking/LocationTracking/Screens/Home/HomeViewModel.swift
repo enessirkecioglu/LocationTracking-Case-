@@ -7,14 +7,17 @@
 
 import Foundation
 import CoreLocation
+import MapKit
 
 protocol HomeViewOutput {
     func didViewLoad()
+    func didSelect(_ mapView: MKMapView, didSelect view: MKAnnotationView)
 }
 
 protocol HomeViewInput: AnyObject {
     func addMarker(at location: CLLocation, title: String)
-    func setRegion(at location: CLLocation)
+    func setRegion(at location: CLLocation, latMeters: Double, longMeters: Double)
+    func addCalloutView(_ address: String, annotationView: MKAnnotationView)
 }
 
 //MARK: - View Model
@@ -23,7 +26,7 @@ final class HomeViewModel: NSObject, HomeViewOutput {
     private var lastLocation: CLLocation?
     private var totalDistance: CLLocationDistance = 0.0
     
-    weak var view: HomeViewInput?
+    weak var delegate: HomeViewInput?
     
     func didViewLoad() {
         locationManager = CLLocationManager()
@@ -31,6 +34,32 @@ final class HomeViewModel: NSObject, HomeViewOutput {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.pausesLocationUpdatesAutomatically = false
+    }
+    
+    func didSelect(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let annotation = view.annotation else { return }
+        
+        let location = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
+        
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(location) {[weak self] (placemarks, error) in
+            if error != nil {
+                return
+            }
+            
+            guard let placemark = placemarks?.first else { return }
+            
+            let address = """
+                \(placemark.name ?? ""),
+                \(placemark.locality ?? ""),
+                \(placemark.administrativeArea ?? ""),
+                \(placemark.country ?? "")
+                """
+            
+            self?.delegate?.addCalloutView(address, annotationView: view)
+        }
     }
 }
 
@@ -43,18 +72,15 @@ extension HomeViewModel: CLLocationManagerDelegate {
             let distance = newLocation.distance(from: lastLocation)
             totalDistance += distance
             
-            print(totalDistance)
             if totalDistance >= 100 {
-                view?.addMarker(at: newLocation, title: "100 metre ilerlediniz.")
+                delegate?.addMarker(at: newLocation, title: "100 metre ilerlediniz.")
                 totalDistance = 0.0
             }
         } else {
-            self.lastLocation = newLocation
-            view?.addMarker(at: newLocation, title: "Başlangıç Noktası")
+            delegate?.addMarker(at: newLocation, title: "Başlangıç Noktası")
         }
         
         self.lastLocation = newLocation
-        
-        view?.setRegion(at: newLocation)
+        delegate?.setRegion(at: newLocation, latMeters: 200, longMeters: 200)
     }
 }

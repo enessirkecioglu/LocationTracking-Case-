@@ -27,5 +27,9 @@
     <string>Konumunuzu izlemek için izin gerekiyor.</string>
     <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
     <string>Konumunuzu izlemek için izin gerekiyor.</string>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>location</string>
+    </array>
 </dict>
 </plist>

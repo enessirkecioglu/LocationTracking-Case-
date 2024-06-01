@@ -11,6 +11,7 @@ import MapKit
 //MARK: - View
 final class HomeViewController: UIViewController, MKMapViewDelegate {
     private var mapView: MKMapView!
+    private var currentCalloutView: CustomCalloutView?
     
     private let viewModel: HomeViewOutput
     private init(viewModel: HomeViewOutput) {
@@ -35,15 +36,62 @@ final class HomeViewController: UIViewController, MKMapViewDelegate {
     static func generateModule() -> HomeViewController {
         let viewModel =  HomeViewModel()
         let view = HomeViewController(viewModel: viewModel)
-        viewModel.view = view
+        viewModel.delegate = view
         return view
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
+        }
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: CustomCalloutView.reuseIdentifier) as? MKMarkerAnnotationView
+        
+        if annotationView == nil {
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: CustomCalloutView.reuseIdentifier)
+            annotationView?.canShowCallout = false
+        } else {
+            annotationView?.annotation = annotation
+        }
+        
+        return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        viewModel.didSelect(mapView, didSelect: view)
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        if let currentCalloutView = currentCalloutView {
+            currentCalloutView.removeFromSuperview()
+            self.currentCalloutView = nil
+        }
     }
 }
 
 //MARK: - Inputs
 extension HomeViewController: HomeViewInput {
-    func setRegion(at location: CLLocation) {
-        let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 600, longitudinalMeters: 600)
+    func addCalloutView(_ address: String, annotationView: MKAnnotationView) {
+        let calloutView = CustomCalloutView()
+        calloutView.setAddress(address)
+        self.currentCalloutView = calloutView
+        
+        annotationView.addSubview(calloutView)
+        
+        calloutView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            calloutView.centerXAnchor.constraint(equalTo: annotationView.centerXAnchor),
+            calloutView.bottomAnchor.constraint(equalTo: annotationView.topAnchor, constant: -16),
+            calloutView.widthAnchor.constraint(lessThanOrEqualToConstant: 200)
+        ])
+    }
+    
+    func setRegion(
+        at location: CLLocation,
+        latMeters: Double,
+        longMeters: Double
+    ) {
+        let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: latMeters, longitudinalMeters: longMeters)
         mapView.setRegion(region, animated: true)
     }
     
