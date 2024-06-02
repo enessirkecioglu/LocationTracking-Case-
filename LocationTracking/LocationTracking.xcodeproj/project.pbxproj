@@ -18,6 +18,8 @@
 		893FDAE52C0A1C7500CE71C5 /* UIApplication+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893FDAE42C0A1C7500CE71C5 /* UIApplication+Ext.swift */; };
 		893FDAE72C0A300D00CE71C5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893FDAE62C0A300D00CE71C5 /* HomeViewModel.swift */; };
 		893FDAEA2C0B4E6E00CE71C5 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893FDAE92C0B4E6E00CE71C5 /* CustomCalloutView.swift */; };
+		893FDAF22C0BB12400CE71C5 /* LocationUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893FDAF12C0BB12400CE71C5 /* LocationUserDefaults.swift */; };
+		8940E4D22C0C50D100D8C6A5 /* CodableLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8940E4D12C0C50D100D8C6A5 /* CodableLocation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		893FDAE42C0A1C7500CE71C5 /* UIApplication+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Ext.swift"; sourceTree = "<group>"; };
 		893FDAE62C0A300D00CE71C5 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		893FDAE92C0B4E6E00CE71C5 /* CustomCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
+		893FDAF12C0BB12400CE71C5 /* LocationUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUserDefaults.swift; sourceTree = "<group>"; };
+		8940E4D12C0C50D100D8C6A5 /* CodableLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableLocation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,7 @@
 		893FDAC12C0A153900CE71C5 /* LocationTracking */ = {
 			isa = PBXGroup;
 			children = (
+				893FDAF02C0BB10C00CE71C5 /* Helpers */,
 				893FDAE82C0B4E4E00CE71C5 /* Components */,
 				893FDAE32C0A1C6200CE71C5 /* Extensions */,
 				893FDAD62C0A15B800CE71C5 /* Application */,
@@ -131,6 +136,7 @@
 		893FDADE2C0A16B300CE71C5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				8940E4D02C0C50BC00D8C6A5 /* Model */,
 				893FDAEC2C0B760200CE71C5 /* ViewController */,
 				893FDAED2C0B760A00CE71C5 /* ViewModel */,
 			);
@@ -168,6 +174,22 @@
 				893FDAE62C0A300D00CE71C5 /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		893FDAF02C0BB10C00CE71C5 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				893FDAF12C0BB12400CE71C5 /* LocationUserDefaults.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8940E4D02C0C50BC00D8C6A5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8940E4D12C0C50D100D8C6A5 /* CodableLocation.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,11 +264,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8940E4D22C0C50D100D8C6A5 /* CodableLocation.swift in Sources */,
 				893FDADD2C0A166500CE71C5 /* SplashViewController.swift in Sources */,
 				893FDAE72C0A300D00CE71C5 /* HomeViewModel.swift in Sources */,
 				893FDAEA2C0B4E6E00CE71C5 /* CustomCalloutView.swift in Sources */,
 				893FDAC32C0A153900CE71C5 /* AppDelegate.swift in Sources */,
 				893FDAE52C0A1C7500CE71C5 /* UIApplication+Ext.swift in Sources */,
+				893FDAF22C0BB12400CE71C5 /* LocationUserDefaults.swift in Sources */,
 				893FDAC52C0A153900CE71C5 /* SceneDelegate.swift in Sources */,
 				893FDAE12C0A16C700CE71C5 /* HomeViewController.swift in Sources */,
 			);

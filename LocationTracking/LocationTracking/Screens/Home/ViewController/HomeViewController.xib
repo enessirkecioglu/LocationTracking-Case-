@@ -34,7 +34,7 @@
                                 <rect key="frame" x="16" y="16" width="361" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x2n-TZ-hl0">
-                                        <rect key="frame" x="0.0" y="0.0" width="361" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="oQh-qN-coG"/>
                                         </constraints>
@@ -44,6 +44,19 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="didTapTrackingButton:" destination="-1" eventType="touchUpInside" id="XLj-cp-S7f"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M5u-lB-Xas">
+                                        <rect key="frame" x="184.66666666666663" y="0.0" width="176.33333333333337" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="WHr-zP-osc"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Sıfırla">
+                                            <color key="baseBackgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="didTapResetButton:" destination="-1" eventType="touchUpInside" id="nJA-Rv-b9L"/>
                                         </connections>
                                     </button>
                                 </subviews>

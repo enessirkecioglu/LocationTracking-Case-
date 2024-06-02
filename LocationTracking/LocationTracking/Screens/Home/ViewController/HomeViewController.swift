@@ -8,12 +8,22 @@
 import UIKit
 import MapKit
 
+//MARK: - Protocol
+protocol HomeViewOutput {
+    var isTracking: Bool { get }
+    
+    func didLoadView()
+    func didSelect(_ mapView: MKMapView, didSelect view: MKAnnotationView)
+    func didTapStartTrackingButton()
+    func didTapStopTrackingButton()
+    func didTapResetButton()
+}
+
 //MARK: - View
 final class HomeViewController: UIViewController {
     @IBOutlet private weak var mapView: MKMapView!
     @IBOutlet private weak var trackingButton: UIButton!
     private var currentCalloutView: CustomCalloutView?
-    private var isTracking: Bool = false
     
     private let viewModel: HomeViewOutput
     private init(viewModel: HomeViewOutput) {
@@ -29,9 +39,8 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         mapView.delegate = self
-        setTrackingButton(isTracking)
-        
-        viewModel.didViewLoad()
+        setTrackingButton(viewModel.isTracking)
+        viewModel.didLoadView()
     }
     
     static func generateModule() -> HomeViewController {
@@ -40,39 +49,35 @@ final class HomeViewController: UIViewController {
         viewModel.delegate = view
         return view
     }
-    
-    private func setTrackingButton(_ isTracking: Bool) {
-        let title = isTracking ? "Durdur" : "İzlemeyi Başlat"
-        let image = UIImage(systemName: isTracking ? "pause.fill" : "play.fill")
-        let backgroundColor: UIColor = isTracking ? .systemPink : .systemGreen
-        
-        var config = UIButton.Configuration.filled()
-        config.title = title
-        config.image = image
-        config.background.backgroundColor = backgroundColor
-        trackingButton.configuration = config
-    }
 }
 
 //MARK: - Actions
 private extension HomeViewController {
     @IBAction func didTapTrackingButton(_ sender: Any) {
-        //Set button state
-        isTracking.toggle()
-        //Change button style
-        setTrackingButton(isTracking)
-        
-        //Delegate
-        if isTracking {
-            viewModel.didTapStartTrackingButton()
-        } else {
+        if viewModel.isTracking {
             viewModel.didTapStopTrackingButton()
+        } else {
+            viewModel.didTapStartTrackingButton()
         }
+    }
+    
+    @IBAction func didTapResetButton(_ sender: Any) {
+        viewModel.didTapResetButton()
     }
 }
 
 //MARK: - Inputs
 extension HomeViewController: HomeViewInput {
+    func removeOverlaysAndAnnotations() {
+        mapView.removeOverlays(mapView.overlays)
+        mapView.removeAnnotations(mapView.annotations)
+    }
+    
+    func drawLine(coordinates: [CLLocationCoordinate2D]) {
+        let polyline = MKPolyline(coordinates: coordinates, count: coordinates.count)
+        mapView.addOverlay(polyline)
+    }
+    
     func addCalloutView(_ address: String, annotationView: MKAnnotationView) {
         let calloutView = CustomCalloutView()
         calloutView.setAddress(address)
@@ -102,6 +107,19 @@ extension HomeViewController: HomeViewInput {
         annotation.coordinate = location.coordinate
         annotation.title = title
         mapView.addAnnotation(annotation)
+    }
+    
+    func setTrackingButton(_ isTracking: Bool) {
+        let title = isTracking ? "Durdur" : "İzlemeyi Başlat"
+        let image = UIImage(systemName: isTracking ? "pause.fill" : "play.fill")
+        let backgroundColor: UIColor = isTracking ? .systemPink : .systemGreen
+        
+        var config = UIButton.Configuration.filled()
+        config.title = title
+        config.image = image
+        config.background.backgroundColor = backgroundColor
+        config.imagePadding = 8
+        trackingButton.configuration = config
     }
 }
 
@@ -133,5 +151,15 @@ extension HomeViewController: MKMapViewDelegate {
             currentCalloutView.removeFromSuperview()
             self.currentCalloutView = nil
         }
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if overlay is MKPolyline {
+            let renderer = MKPolylineRenderer(overlay: overlay)
+            renderer.strokeColor = .blue
+            renderer.lineWidth = 4.0
+            return renderer
+        }
+        return MKOverlayRenderer()
     }
 }
